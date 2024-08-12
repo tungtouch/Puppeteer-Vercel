@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "lib": [
+      "ES2018",
+      "DOM"
+    ],
+    "target": "ES2018",
+    "module": "CommonJS",
+    "outDir": "dist",
+    "sourceMap": false,
+    "declaration": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./api/_types"
+    ],
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noEmitOnError": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "api/**/*",
+    "web/**/*"
+  ],
+  "exclude": [
+    "dist",
+    ".cache"
+  ]
+}

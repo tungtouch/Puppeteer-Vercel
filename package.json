@@ -1,23 +1,32 @@
 {
-  "name": "puppeteer-vercel",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "name": "pdfx",
+  "version": "0.0.0",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
+  "scripts": {
+    "compile": "tsc",
+    "watch": "tsc --watch",
+    "build": "tsc --noEmit && parcel build web/index.html -d public",
+    "dev": "tsc --noEmit --watch & parcel web/index.html"
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ],
   "dependencies": {
-    "chrome-aws-lambda": "^6",
-    "express": "^4.18.1",
-    "puppeteer-core": "^6"
+    "@sparticuz/chromium": "119.0.2",
+    "puppeteer-core": "21.6.1",
+    "vue": "^2.7.14"
   },
   "devDependencies": {
-    "puppeteer": "^16.2.0"
+    "@vercel/node": "^3.0.25",
+    "@vue/component-compiler-utils": "^3.3.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.69.4",
+    "typescript": "^5.3.3",
+    "vue-hot-reload-api": "^2.3.4",
+    "vue-template-compiler": "^2.7.14"
   }
 }
