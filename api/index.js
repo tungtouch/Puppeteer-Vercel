@@ -3,7 +3,7 @@ const app = require("express")();
 let chrome = {};
 let puppeteer;
 
-if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+if (process.env.IS_VERCEL || process.env.AWS_LAMBDA_FUNCTION_VERSION) {
   chrome = require("chrome-aws-lambda");
   puppeteer = require("puppeteer-core");
 } else {
@@ -13,12 +13,12 @@ if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
 app.get("/api", async (req, res) => {
   let options = {};
 
-  if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+  if (process.env.IS_VERCEL || process.env.AWS_LAMBDA_FUNCTION_VERSION) {
     options = {
       args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
       defaultViewport: chrome.defaultViewport,
       executablePath: await chrome.executablePath,
-      headless: true,
+      headless: chrome.headless,
       ignoreHTTPSErrors: true,
     };
   }
@@ -29,9 +29,11 @@ app.get("/api", async (req, res) => {
     let page = await browser.newPage();
     await page.goto("https://www.google.com");
     res.send(await page.title());
+
+    await browser.close(); // Don't forget to close the browser!
   } catch (err) {
     console.error(err);
-    return null;
+    res.status(500).send("Error occurred while launching Puppeteer.");
   }
 });
 
