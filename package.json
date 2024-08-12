@@ -13,11 +13,11 @@
     "node": "18.x"
   },
   "dependencies": {
-    "chrome-aws-lambda": "^10",
+    "chrome-aws-lambda": "^6",
     "express": "^4.18.1",
-    "puppeteer-core": "^23"
+    "puppeteer-core": "^6"
   },
   "devDependencies": {
-    "puppeteer": "^23"
+    "puppeteer": "^16.2.0"
   }
 }
